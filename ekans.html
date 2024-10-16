@@ -1,0 +1,641 @@
+Q1>User Defined Exception Handling
+Ans:
+using System;
+public class userdefineException : Exception
+{
+    public userdefineException(string message) : base(message) { }
+}
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.Write("Numerator: ");
+            int num = int.Parse(Console.ReadLine());
+
+            Console.Write("Denominator: ");
+            int den = int.Parse(Console.ReadLine());
+
+            if (den == 0){
+                throw new userdefineException("Cannot divide by zero.");
+}else{
+            Console.WriteLine($"Result: {num / den}");}
+        }
+        catch (userdefineException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+       finally{
+               Console.WriteLine("Program Executed");    }
+       Console.ReadKey();
+    }
+}
+
+
+
+Q2 Create a simple web page Containing the student details
+Ans:
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
+    Inherits="_Default" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+            <asp:Label ID="Label1" runat="server" Text="Name"></asp:Label>
+            &nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="name" runat="server" AutoPostBack="True"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblName" runat="server"></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click"
+                Text="Submit" />
+        </div>
+    </form>
+
+</body>
+</html>
+
+Default.aspx.cs
+
+using System;
+public partial class _Default : System.Web.UI.Page
+{
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+
+        lblName.Text = "Your good name is " + name.Text;
+
+    }
+}
+
+
+Q3>Create a simple web page with various server controls
+Default.aspx (same as Q2)
+
+Q4Create a simple web page to count the number of items the current webpages is submitted to the server onclick event of a button
+
+Ans:
+
+
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
+    Inherits="_Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+     <form id="form1" runat="server">
+        <div>
+            <h1>number of this item is submitted to server</h1>
+
+            <asp:Button ID="btnClick" runat="server" Text="submit" OnClick="btnClick_Click" />
+            <br /><br />
+
+            <asp:Label ID="lblCount" runat="server" Text="Button clicked: 0 times"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+using System;
+public partial class _Default : System.Web.UI.Page
+{
+    private static int clickCount = 0;
+
+    protected void btnClick_Click(object sender, EventArgs e)
+    {
+        clickCount++;
+        lblCount.Text = "number of time submited" + clickCount;
+    }
+}
+
+
+
+
+
+
+
+Ans:
+using System;
+
+namespace SimpleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Factorial
+            Console.WriteLine("Enter a number for factorial calculation:");
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine("Factorial of " + num + " is: " + Factorial(num));
+
+            // Money Conversion (Rupees to Dollar and Dollar to Rupees)
+            Console.WriteLine("\nEnter amount in Rupees:");
+            double rupees = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{rupees} Rupees is equivalent to {RupeesToDollars(rupees)} Dollars");
+
+            Console.WriteLine("\nEnter amount in Dollars:");
+            double dollars = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{dollars} Dollars is equivalent to {DollarsToRupees(dollars)} Rupees");
+
+            // Cube of a number
+            Console.WriteLine("\nEnter a number to find its cube:");
+            int cubeNum = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cube of " + cubeNum + " is: " + Cube(cubeNum));
+
+            // Fibonacci Series
+            Console.WriteLine("\nEnter number of terms for Fibonacci series:");
+            int terms = int.Parse(Console.ReadLine());
+            Console.WriteLine("Fibonacci Series:");
+            FibonacciSeries(terms);
+            Console.ReadKey();
+
+        }
+        // Method for Factorial
+        static int Factorial(int n)
+        {
+            int result = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                result *= i;
+            }
+            return result;
+        }
+
+        static double RupeesToDollars(double rupees)
+        {
+            return rupees / 75;
+        }
+
+        // Method for Dollar to Rupees Conversion (assume 1 Dollar = 75 Rupees)
+        static double DollarsToRupees(double dollars)
+        {
+            return dollars * 75;
+        }
+
+        // Method for Cube of a number
+        static int Cube(int n)
+        {
+            return n * n * n;
+        }
+
+        // Method for Fibonacci Series
+        static void FibonacciSeries(int terms)
+        {
+            int first = 0, second = 1, next;
+            for (int i = 1; i <= terms; i++)
+            {
+                Console.Write(first + " ");
+                next = first + second;
+                first = second;
+                second = next;
+            }
+            Console.WriteLine();
+        }
+
+
+    }
+}
+
+
+Q6> 7> Same of both calender control
+Ans:
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
+Inherits="_Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+.auto-style1 {
+width: 100%;
+}
+.auto-style2 {
+width: 480px;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<table class="auto-style1">
+<tr>
+<td class="auto-style2">
+<asp:Label ID="lblDateTime" runat="server" Text="Date and
+Time"></asp:Label>
+</td>
+<td>
+<asp:Button ID="btnSetDate" runat="server" OnClick="btnSetDate_Click"
+Text="Set Date" />
+</td>
+</tr>
+<tr>
+<td class="auto-style2">
+<asp:Calendar ID="Calendar1" runat="server" BackColor="#FFCCCC"
+BorderColor="#00FFCC" Font-Bold="True" ForeColor="#0033CC" Height="180px"
+Width="200px"></asp:Calendar>
+</td>
+<td>
+<asp:Button ID="btnPlainPostBack" runat="server" Text="Plain Post Back" />
+</td>
+</tr>
+</table>
+</div>
+</form>
+</body>
+</html>
+
+
+using System;
+public partial class _Default : System.Web.UI.Page
+{
+protected void btnSetDate_Click(object sender, EventArgs e)
+{
+lblDateTime.Text = DateTime.Now.ToString();
+}
+}
+
+
+
+Q8 same as Question 2
+Q9 boxing unboxing
+Ans:
+using System;
+class Program
+{   static void Main(string[] args)
+    {
+        try{
+        Console.Write("Enter an integer value: ");
+            int userValue = int.Parse(Console.ReadLine());
+            object boxedValue = userValue;
+            Console.WriteLine("Boxed value: " + boxedValue);
+            int unboxedValue = (int)boxedValue;
+            Console.WriteLine("Unboxed value: " + unboxedValue);
+
+            Console.WriteLine("\nArray Operations with Boxing and Unboxing:");
+            int[] numbers = { 1, 2, 3, 4, 5 };
+            object[] boxedArray = new object[numbers.Length];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                boxedArray[i] = numbers[i];
+            }
+            for (int i = 0; i < boxedArray.Length; i++)
+            {
+                int unboxedElement = (int)boxedArray[i];
+                Console.WriteLine($"Element {i} after unboxing: {unboxedElement}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error occurred: " + ex.Message);
+        }
+        Console.ReadKey();
+    }
+}
+
+
+
+
+Q10Design an aspt.net webpage withh 2 groups of radio button , dropdownlist,label and text box
+
+Ans:
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Simple ASP.NET Web Page</h2>
+            
+            <!-- Group 1: Radio Buttons -->
+            <h3>Choose an Option from Group 1:</h3>
+            <asp:RadioButton ID="RadioButton1Group1" runat="server" GroupName="Group1" Text="Option 1" />
+            <asp:RadioButton ID="RadioButton2Group1" runat="server" GroupName="Group1" Text="Option 2" />
+
+            <!-- Group 2: Radio Buttons -->
+            <h3>Choose an Option from Group 2:</h3>
+            <asp:RadioButton ID="RadioButton1Group2" runat="server" GroupName="Group2" Text="Option A" />
+            <asp:RadioButton ID="RadioButton2Group2" runat="server" GroupName="Group2" Text="Option B" />
+
+            <!-- Dropdown List -->
+            <h3>Select an Item from Dropdown:</h3>
+            <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:ListItem Text="Item 1" Value="1"></asp:ListItem>
+                <asp:ListItem Text="Item 2" Value="2"></asp:ListItem>
+                <asp:ListItem Text="Item 3" Value="3"></asp:ListItem>
+            </asp:DropDownList>
+
+            <!-- TextBox -->
+            <h3>Enter Some Text:</h3>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+            <!-- Button to Submit and Label for Display -->
+            <br /><br />
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+            <br /><br />
+            <asp:Label ID="LabelResult" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+using System;
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        // Check which option in Group 1 is selected
+        string group1Selection = "None";
+        if (RadioButton1Group1.Checked)
+        {
+            group1Selection = "Option 1";
+        }
+        else if (RadioButton2Group1.Checked)
+        {
+            group1Selection = "Option 2";
+        }
+
+        // Check which option in Group 2 is selected
+        string group2Selection = "None";
+        if (RadioButton1Group2.Checked)
+        {
+            group2Selection = "Option A";
+        }
+        else if (RadioButton2Group2.Checked)
+        {
+            group2Selection = "Option B";
+        }
+
+        // Get selected item from the DropDownList
+        string dropdownSelection = DropDownList1.SelectedItem.Text;
+
+        // Get text from the TextBox
+        string enteredText = TextBox1.Text;
+
+        // Display results in the Label
+        LabelResult.Text = "Group 1: " + group1Selection + ", Group 2: " + group2Selection +
+                           ", Dropdown: " + dropdownSelection + ", Text: " + enteredText;
+
+    }
+}
+
+
+Q13Dividebyzeroexception and indexoutofrangeexception excepting using textbox and label
+Ans:
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+   <form id="form1" runat="server">
+        <h1>Exception Handling Example</h1>
+        
+        <asp:Label ID="lblResult" runat="server" Text="" />
+        <br /><br />
+
+        <h3>Divide By Zero</h3>
+        <asp:TextBox ID="txtNumerator" runat="server" placeholder="Numerator" />
+        <asp:TextBox ID="txtDenominator" runat="server" placeholder="Denominator" />
+        <asp:Button ID="btnDivide" runat="server" Text="Divide" OnClick="btnDivide_Click" />
+        
+        <h3>Index Out of Range</h3>
+        <asp:TextBox ID="txtIndex" runat="server" placeholder="Index (0-2)" />
+        <asp:Button ID="btnAccess" runat="server" Text="Access Array" OnClick="btnAccess_Click" />
+    </form>
+</body>
+</html>
+
+
+using System;
+public partial class _Default : System.Web.UI.Page
+{
+    protected void btnDivide_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Ensure inputs are valid integers
+            int numerator;
+            int denominator;
+
+            if (int.TryParse(txtNumerator.Text, out numerator) && int.TryParse(txtDenominator.Text, out denominator))
+            {
+                // Handle division and check for division by zero
+                if (denominator == 0)
+                {
+                    lblResult.Text = "Error: Cannot divide by zero.";
+                }
+                else
+                {
+                    int result = numerator / denominator;
+                    lblResult.Text = "Result: " + result;
+                }
+            }
+            else
+            {
+                lblResult.Text = "Error: Please enter valid integers.";
+            }
+        }
+        catch (Exception ex)
+        {
+            lblResult.Text = "Unexpected error: " + ex.Message;
+        }
+    }
+
+    protected void btnAccess_Click(object sender, EventArgs e)
+    {
+           string[] array = { "Apple", "Banana", "Cherry" };
+
+        try
+        {
+            int index;
+            if (int.TryParse(txtIndex.Text, out index))
+            {
+                // Check for index range
+                if (index >= 0 && index < array.Length)
+                {
+                    lblResult.Text = "Value at index " + index + ": " + array[index];
+                }
+                else
+                {
+                    lblResult.Text = "Error: Index is out of range.";
+                }
+            }
+            else
+            {
+                lblResult.Text = "Error: Please enter a valid integer for the index.";
+            }
+        }
+        catch (Exception ex)
+        {
+            lblResult.Text = "Unexpected error: " + ex.Message;
+        }
+    }
+}
+
+
+
+Q14 Tree
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>TreeView Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        
+        
+        <h1>TreeView Control Example</h1>
+        
+        <asp:TreeView ID="TreeView1" runat="server" ExpandDepth="1" ShowLines="true">
+        </asp:TreeView>
+    </form>
+</body>
+</html>
+
+
+
+using System;
+using System.Web.UI.WebControls;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            TreeNode rootNode = new TreeNode("Root Node");
+            TreeView1.Nodes.Add(rootNode);
+
+            TreeNode childNode1 = new TreeNode("Child Node 1");
+            TreeNode childNode2 = new TreeNode("Child Node 2");
+            rootNode.ChildNodes.Add(childNode1);
+            rootNode.ChildNodes.Add(childNode2);
+
+            childNode1.ChildNodes.Add(new TreeNode("Grandchild Node 1"));
+            childNode1.ChildNodes.Add(new TreeNode("Grandchild Node 2"));
+            childNode2.ChildNodes.Add(new TreeNode("Grandchild Node 3"));
+
+            TreeView1.ExpandAll();
+        }
+    }
+}
+
+
+Q15Display the no. of visitors on a given web page 
+Ans:
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+   <form id="form1" runat="server">
+        <h1>Welcome to Our Web Page!</h1>
+        <h2>Number of Visitors: <asp:Label ID="lblVisitorCount" runat="server" /></h2>
+    </form>
+</body>
+</html>
+
+
+
+using System;
+
+    public partial class _Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Initialize visitor count if it's the first visit
+            if (Application["VisitorCount"] == null)
+            {
+                Application["VisitorCount"] = 1;
+            }
+            else
+            {
+                // Increment the visitor count on each page load
+                int count = (int)Application["VisitorCount"];
+                Application["VisitorCount"] = count + 1;
+            }
+
+            // Display the current visitor count
+            lblVisitorCount.Text = Application["VisitorCount"].ToString();
+        }
+    }
+
+
+
+
+Q16  Registration form same as Q2
+
+Q17 multiple inheritance using interfaces
+Ans:
+using System;
+interface IAnimal
+{
+    void Eat();
+}
+
+interface IFlyable
+{
+    void Fly();
+}
+
+class Bird : IAnimal, IFlyable
+{
+    public void Eat()
+    {
+        Console.WriteLine("The bird is eating.");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine("The bird is flying.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Bird myBird = new Bird();
+        myBird.Eat();
+        myBird.Fly();
+        Console.WriteLine("Press Any key to continue...");
+        Console.ReadKey();
+    }
+}
+
+Q18Create a table with records and retrieve those using disconnected data access in a 
+Ans:
+
